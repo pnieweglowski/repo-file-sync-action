@@ -188,6 +188,8 @@ const parseFiles = (files) => {
 				source: item.source,
 				dest: item.dest || item.source,
 				template: item.template === undefined ? TEMPLATE_DEFAULT : item.template,
+				// additional properties to support yaml merging
+				yamlMerge: item.yamlMerge === undefined ? false : item.yamlMerge,
 				replace: item.replace === undefined ? REPLACE_DEFAULT : item.replace,
 				deleteOrphaned: item.deleteOrphaned === undefined ? DELETE_ORPHANED_DEFAULT : item.deleteOrphaned,
 				exclude: parseExclude(item.exclude, item.source)

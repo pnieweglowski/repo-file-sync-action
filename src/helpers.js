@@ -128,6 +128,23 @@ export async function copy(src, dest, isDirectory, file) {
 
 			await write(src, dest, file.template)
 		}
+	} else if (file.yamlMerge) {
+		if (isDirectory) {
+			core.debug(`Merge all YAML files in directory ${ src } to ${ dest }`)
+
+			const srcFileList = await readfiles(src, { readContents: false, hidden: true })
+			for (const srcFile of srcFileList) {
+				if (!filterFunc(srcFile)) { continue }
+
+				const srcPath = path.join(src, srcFile)
+				const destPath = path.join(dest, srcFile)
+				await write(srcPath, destPath, file.yamlMerge)
+			}
+		} else {
+			core.debug(`Merge YAML file ${ src } to ${ dest }`)
+
+			await fs.mergeYaml(src, dest, file.yamlMerge)
+		}
 	} else {
 		core.debug(`Copy ${ src } to ${ dest }`)
 		await fs.copy(src, dest, file.exclude !== undefined && { filter: filterFunc })
