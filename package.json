@@ -8,7 +8,8 @@
     "lint": "eslint ./src",
     "start": "node src/index.js",
     "build": "ncc build src/index.js -o dist -m --license licenses.txt",
-    "test": "c8 mocha --node-option no-experimental-fetch --recursive --timeout=5000 build/test",
+    "test-bck": "c8 mocha --node-option no-experimental-fetch --recursive --timeout=5000 build/test",
+    "test": "c8 mocha --recursive --timeout=5000 build/test",
     "compile": "tsc -p .",
     "pretest": "npm run compile"
   },
