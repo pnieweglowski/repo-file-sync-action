@@ -16,7 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 14
       # - name: Cache node modules
@@ -33,7 +33,7 @@ jobs:
         node: [14]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v5
         with:
           node-version: ${{ matrix.node }}
       - run: npm install --production --engine-strict --ignore-scripts --no-package-lock
@@ -48,7 +48,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
           node-version: 14
       # - name: Cache node modules
